@@ -1,3 +1,5 @@
+// Following: https://github.com/tylermercer/nuxt-netlifycms-boilerplate/blob/master/store/index.js
+
 export const state = () => ({
   blogPosts: [],
   allPages: [],

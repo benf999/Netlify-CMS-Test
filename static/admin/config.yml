@@ -6,16 +6,27 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'blog'
-    label: 'Blog'
+  - name: 'hair'
+    label: 'Hair Products'
     format: 'json'
-    folder: 'assets/content/blog'
+    folder: 'assets/content/hair'
+    path: '{{subcategory}}/{{slug}}'
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     editor:
       preview: false
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Product Name', name: 'title', widget: 'string' }
+      - { label: 'Subcategory', name: 'subcategory', widget: 'relation', collection: 'hair-subcategories', searchFields: ["title"], valueField: "title", displayFields: ["title"] }
+      - { label: 'Brand (Optional)', name: 'brand', widget: 'string' }
       - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Image', name: 'image', widget: 'image' }
+      
+  - name: 'hair-subcategories'
+    label: 'Hair Subcategories'
+    format: 'json'
+    folder: 'assets/content/hair/subcategories'
+    create: true
+    editor:
+      preview: false
+    fields:
+      - { label: 'Subcategory Name', name: 'title', widget: 'string' }
