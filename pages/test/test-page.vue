@@ -8,9 +8,9 @@
       <h2 class="posts-list-title">
         Posts
       </h2>
-      <p v-for="post in blogPosts" :key="post.id" class="post-link">
-        <n-link :to="post._path">
-          {{ post.title }}
+      <p v-for="product in hairProducts" :key="product.id" class="post-link">
+        <n-link :to="product._path">
+          {{ product.title }}
         </n-link>
       </p>
     </div>
@@ -20,11 +20,8 @@
 <script>
 export default {
   computed: {
-    blogPosts () {
-      return this.$store.state.blogPosts
-    },
-    siteInfo () {
-      return this.$store.state.siteInfo
+    hairProducts () {
+      return this.$store.state.hairProducts
     }
   }
 }

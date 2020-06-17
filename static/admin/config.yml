@@ -16,7 +16,7 @@ collections:
       preview: false
     fields:
       - { label: 'Product Name', name: 'title', widget: 'string' }
-      - { label: 'Subcategory', name: 'subcategory', widget: 'relation', collection: 'hair-subcategories', searchFields: ["title"], valueField: "title", displayFields: ["title"] }
+      - { label: 'Subcategory', name: 'subcategory', widget: 'relation', collection: 'hair-subcategories', searchFields: ['title'], valueField: 'title', displayFields: ['title'] }
       - { label: 'Brand (Optional)', name: 'brand', widget: 'string' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Image', name: 'image', widget: 'image' }
