@@ -12,7 +12,7 @@ export default {
     if (payload) {
       return { blogPost: payload }
     } else {
-      return { blogPost: await require(`~/assets/content/blog/${params.blog}.json`) }
+      return { blogPost: await require(`~/assets/content/hair/${params.blog}.json`) }
     }
   }
 }
