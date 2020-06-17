@@ -1,31 +1,40 @@
 backend:
   name: git-gateway
-  branch: master
-
-media_folder: static/img
-public_folder: /img
-
+  branch: master # Branch to update (optional; defaults to master)
+publish_mode: editorial_workflow
+media_folder: "static/images/uploads" # Media files will be stored in the repo under images/uploads
+public_folder: "/images/uploads"
 collections:
-  - name: 'hair'
-    label: 'Hair Products'
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog" # Used in the UI
+    folder: "content/blog" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     format: 'json'
-    folder: 'assets/content/hair'
-    path: '{{subcategory}}/{{slug}}'
-    create: true
-    editor:
-      preview: false
-    fields:
-      - { label: 'Product Name', name: 'title', widget: 'string' }
-      - { label: 'Brand (Optional)', name: 'brand', widget: 'string' }
-      - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Image', name: 'image', widget: 'image' }
-      
-  - name: 'hair-subcategories'
-    label: 'Hair Subcategories'
+    sort: "date:desc" # Default is title:asc
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "date", format: "Do MMM YYYY"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "pages" # Used in routes, e.g., /admin/collections/blog
+    label: "Pages" # Used in the UI
+    folder: "content/pages" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     format: 'json'
-    folder: 'assets/content/hair/subcategories'
-    create: true
-    editor:
-      preview: false
-    fields:
-      - { label: 'Subcategory Name', name: 'title', widget: 'string' }
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - label: "Setup"
+    name: "setup"
+    files:
+    - label: "Site Info"
+      name: "info"
+      format: 'json'
+      file: "content/setup/info.json"
+      fields:
+        - {label: Site Name, name: sitename, widget: string}
+        - {label: Site Description, name: sitedescription, widget: string}
